@@ -44,9 +44,6 @@ Each GIF plays the 25 sampling steps and holds the final frame. Still images abo
 
 ![images](ncsnv2/gifs/images.gif)
 
-![huo long guo](ncsnv2/gifs/huo_long_guo.gif)
-
-![huo long guo 4](ncsnv2/gifs/huo_long_guo_4.gif)
 
 Frame folders are in [`ncsnv2/exp/image_samples/`](ncsnv2/exp/image_samples). Training grids are in [`ncsnv2/exp/logs/`](ncsnv2/exp/logs).
 
