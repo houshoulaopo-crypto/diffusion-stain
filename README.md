@@ -1,6 +1,18 @@
 # Diffusion stain
 
-Backup of the virtual-staining experiments in `Diffusion_stain`.
+## Results
+
+VAE reconstructions of the HEMIT test set. One center patch from each of the 15 slides (945 patches total):
+
+![HEMIT test reconstructions](preview/test_reconstructions.png)
+
+Training preview, original mIHC next to the epoch-10 reconstruction:
+
+![Epoch 10 reconstruction](Pix2pix_DualBranch/vae_checkpoints/recon_epoch_10.png)
+
+![Epoch 5 reconstruction](Pix2pix_DualBranch/vae_checkpoints/recon_epoch_5.png)
+
+Full set: [`Pix2pix_DualBranch/VAE/results/`](Pix2pix_DualBranch/VAE/results)
 
 ## What is here
 
@@ -23,5 +35,3 @@ These were in the local project and are not in this repo:
 - Paper PDFs.
 - The Chinese translation JSON under `My_latent_diffusion/transformer/` (about 1.2 GB).
 - VAE weights `vae_best.pth` and `vae_epoch_100.pth` (about 958 MB each). GitHub rejects files over 100 MB.
-
-The original project folder was kept locally. This repo is only the backup.
