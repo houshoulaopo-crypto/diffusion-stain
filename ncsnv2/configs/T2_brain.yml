@@ -1,0 +1,70 @@
+training:
+  batch_size: 4
+  n_epochs: 10000
+  n_iters: 80001
+  snapshot_freq: 2000
+  snapshot_sampling: true
+  anneal_power: 2
+  log_all_sigmas: false
+
+sampling:
+  batch_size: 4
+  data_init: false
+  step_lr: 0.0000009
+  n_steps_each: 4
+  ckpt_id: 80000
+  final_only: true
+  fid: false
+  denoise: true
+  num_samples4fid: 10000
+  inpainting: false
+  interpolation: false
+  n_interpolations: 8
+
+fast_fid:
+  batch_size: 1000
+  num_samples: 1000
+  step_lr: 0.0000009
+  n_steps_each: 3
+  begin_ckpt: 100000
+  end_ckpt: 80000
+  verbose: false
+  ensemble: false
+
+test:
+  begin_ckpt: 5000
+  end_ckpt: 80000
+  batch_size: 1
+
+data:
+  dataset: "MRI"
+  category: "MRI"
+  dir: "/home/yubai402b/MZJ/csgm-mri-langevin-main/brain_multicoil_train_batch_0/"
+  image_size: 256
+  channels: 2
+  logit_transform: false
+  uniform_dequantization: false
+  gaussian_dequantization: false
+  random_flip: true
+  rescaled: false
+  num_workers: 2
+
+model:
+  sigma_begin: 232
+  num_classes: 1086
+  ema: true
+  ema_rate: 0.999
+  spec_norm: false
+  sigma_dist: geometric
+  sigma_end: 0.0066
+  normalization: InstanceNorm++
+  nonlinearity: elu
+  ngf: 128
+
+optim:
+  weight_decay: 0.000
+  optimizer: "Adam"
+  lr: 0.0001
+  beta1: 0.9
+  amsgrad: false
+  eps: 0.001

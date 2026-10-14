@@ -1,0 +1,33 @@
+
+# PyTorch + CUDA 13 nightly
+torch
+torchvision
+torchaudio
+
+# Core scientific packages
+numpy>=1.24.4
+scipy>=1.11.1
+pandas>=2.1.1
+scikit-learn>=1.3.0
+scikit-image>=0.21.0
+numba>=0.57.1
+
+# HDF5 / MRI related
+h5py>=3.9.0
+imageio>=2.30.1
+lmdb>=1.5.1
+
+# Image and visualization
+Pillow>=10.0.0
+matplotlib>=3.8.0
+seaborn>=0.12.2
+
+# Utilities
+tqdm>=4.66.1
+PyYAML>=6.0
+requests>=2.32.0
+glob2>=0.7
+
+# Optional for notebooks / debugging
+ipython>=8.16.0
+pdbpp>=0.11.0

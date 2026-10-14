@@ -1,0 +1,1 @@
+python main.py --doc stain_sigma_1 --config stain_sample.yml --sample

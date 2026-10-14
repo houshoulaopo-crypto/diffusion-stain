@@ -1,37 +1,55 @@
 # Diffusion stain
 
+NCSNv2 stain translation is the main experiment. The model is a score-based network (NCSNv2) trained on histology patches, then used to sample PAS→H&E and Masson→H&E translations.
+
 ## Results
 
-VAE reconstructions of the HEMIT test set. One center patch from each of the 15 slides (945 patches total):
+### PAS → H&E
 
-![HEMIT test reconstructions](preview/test_reconstructions.png)
+Real PAS patches, then the sample at the last noise level:
 
-Training preview, original mIHC next to the epoch-10 reconstruction:
+![PAS real patches](ncsnv2/exp/image_samples/PAS2HE_1/real_sample.png)
 
-![Epoch 10 reconstruction](Pix2pix_DualBranch/vae_checkpoints/recon_epoch_10.png)
+![PAS to H&E sample](ncsnv2/exp/image_samples/PAS2HE_1/level_2310.png)
 
-![Epoch 5 reconstruction](Pix2pix_DualBranch/vae_checkpoints/recon_epoch_5.png)
+### Masson → H&E
 
-Full set: [`Pix2pix_DualBranch/VAE/results/`](Pix2pix_DualBranch/VAE/results)
+![Masson real patches](ncsnv2/exp/image_samples/Massion2HE_2/real_sample.png)
 
-## What is here
+![Masson to H&E sample](ncsnv2/exp/image_samples/Massion2HE_2/level_2310.png)
 
-- `My_latent_diffusion/` — latent diffusion implementation (encoder, decoder, DDPM, CLIP conditioning, sampling pipeline) and a small transformer module.
-- `Pix2pix_DualBranch/` — working copy of [BianChang/Pix2pix_DualBranch](https://github.com/BianChang/Pix2pix_DualBranch) (MIT) plus a VAE trained on HEMIT multiplex-IHC images.
-  - `VAE/` — VAE model, training, and test scripts.
-  - `VAE/results/` — 945 reconstructed test patches from the HEMIT `testA` set.
-  - `vae_checkpoints/recon_epoch_*.png` — training reconstruction previews.
-  - `checkpoints/hemit_SwinTResnet_New_2/` — pix2pix training log and options (no weights).
-- `scripts/cut_svs.py` — OpenSlide helper that cuts non-empty 512×512 patches from an SVS slide.
+### 128px sampling
 
-`test_vae.py` and `cut_svs.py` still contain absolute paths from the original machine.
+![128 real patches](ncsnv2/exp/image_samples/sigma_0.5_begin_0.1_128_3/real_sample.png)
 
-## Left out on purpose
+![128 sample](ncsnv2/exp/image_samples/sigma_0.5_begin_0.1_128_3/level_2310.png)
 
-These were in the local project and are not in this repo:
+Every run’s intermediate noise levels and grids are in [`ncsnv2/exp/image_samples/`](ncsnv2/exp/image_samples). Training grids are in [`ncsnv2/exp/logs/`](ncsnv2/exp/logs).
 
-- Raw slides and datasets (`data/`, the HEMIT image folders, about 50 GB). `data/SLE_svs` is clinical whole-slide data and was not uploaded.
-- Third-party checkouts: Stable Diffusion, latent diffusion, NCSNv2, stain-transformation, and super-resolved virtual staining.
-- Paper PDFs.
-- The Chinese translation JSON under `My_latent_diffusion/transformer/` (about 1.2 GB).
-- VAE weights `vae_best.pth` and `vae_epoch_100.pth` (about 958 MB each). GitHub rejects files over 100 MB.
+## Code
+
+`ncsnv2/` is a working copy of [yang-song/ncsnv2](https://github.com/ermongroup/ncsnv2) plus the stain experiments:
+
+- `configs/stain.yml`, `configs/stain_sample.yml` — stain training and sampling
+- `datasets/stain.py` — stain dataset
+- `stain.py`, `cut_svs.py`, `demo.py`, `cmd.txt` — sampling and slide-cutting helpers
+- `Real-ESRGAN-master/` — super-resolution helper (weights not included)
+
+Sampling command from `cmd.txt`:
+
+```bash
+python main.py --doc stain_sigma_1 --config stain_sample.yml --sample
+```
+
+Paths inside the configs still point at the original machine.
+
+## Also in this repo
+
+An earlier HEMIT VAE experiment: code in `Pix2pix_DualBranch/VAE/` and a preview in [`preview/test_reconstructions.png`](preview/test_reconstructions.png). Latent-diffusion sources are in `My_latent_diffusion/`.
+
+## Left out
+
+- Checkpoints (`best_pht/checkpoint_80000.pth` and `exp/logs/**/checkpoint_*.pth`, about 1.4 GB each). GitHub rejects files over 100 MB.
+- `lmdb_data/` and the raw slides.
+- `test_sample/PAS_128/` (about 38,000 patches, 1.5 GB). Filenames include case IDs, so that folder stayed on the local disk.
+- Real-ESRGAN weights.
