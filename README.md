@@ -46,10 +46,3 @@ Paths inside the configs still point at the original machine.
 ## Also in this repo
 
 An earlier HEMIT VAE experiment: code in `Pix2pix_DualBranch/VAE/` and a preview in [`preview/test_reconstructions.png`](preview/test_reconstructions.png). Latent-diffusion sources are in `My_latent_diffusion/`.
-
-## Left out
-
-- Checkpoints (`best_pht/checkpoint_80000.pth` and `exp/logs/**/checkpoint_*.pth`, about 1.4 GB each). GitHub rejects files over 100 MB.
-- `lmdb_data/` and the raw slides.
-- `test_sample/PAS_128/` (about 38,000 patches, 1.5 GB). Filenames include case IDs, so that folder stayed on the local disk.
-- Real-ESRGAN weights.
