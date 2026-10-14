@@ -1,5 +1,5 @@
 *.gif
 *.pdf
-exp/
+*.pth
 .idea/
 __pycache__
