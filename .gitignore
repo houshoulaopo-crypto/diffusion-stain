@@ -1,0 +1,9 @@
+__pycache__/
+*.py[cod]
+.idea/
+*.pth
+*.pt
+*.ckpt
+*.svs
+*.zip
+translation2019zh_train.json

@@ -1,0 +1,10 @@
+numpy>=1.23.0          # instead of 1.19.5
+scipy>=1.10.0
+matplotlib>=3.7.0
+scikit-image>=0.20.0
+timm>=0.9.0            # major upgrade; may need small code fixes if using specific models
+opencv-python>=4.8.0
+Pillow>=10.0.0
+einops>=0.7.0
+tqdm>=4.66.0
+wandb>=0.16.0          # replace visdom entirely	
